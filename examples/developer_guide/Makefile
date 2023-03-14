@@ -1,4 +1,4 @@
 .PHONY: image
 image:
-	docker build -t "quay.io/numaio/numaflow-python/mapt-event-time-filter:before-use-native-construct" .
+	docker build -t "quay.io/numaio/numaflow-python/mapt-event-time-filter:after-use-native-construct" .
 
