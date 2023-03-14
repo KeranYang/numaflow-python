@@ -39,6 +39,9 @@ class Message:
     to_all = partialmethod(to_vtx, ALL)
     to_drop = partialmethod(to_vtx, DROP, b"")
 
+    def __post_init__(self):
+        raise TypeError("Cannot use __init__ constructor, please use to_vtx, to_all or to_drop to create Message")
+
 
 class Messages:
     """
@@ -107,6 +110,9 @@ class MessageT:
 
     to_all = partialmethod(to_vtx, ALL)
     to_drop = partialmethod(to_vtx, DROP, b"", datetime(1, 1, 1, 0, 0))
+
+    def __post_init__(self):
+        raise TypeError("Cannot use __init__ constructor, please use to_vtx, to_all or to_drop to create MessageT")
 
 
 class MessageTs:
