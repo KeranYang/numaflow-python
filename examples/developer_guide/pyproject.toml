@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "reduce-counter"
+name = "event-time-filter"
 version = "0.2.4"
 description = ""
 authors = ["Numaflow developers"]
@@ -7,7 +7,7 @@ authors = ["Numaflow developers"]
 [tool.poetry.dependencies]
 python = ">=3.8, <3.11"
 aiorun = "^2022.11.1"
-pynumaflow = {git = "https://github.com/<YOUR_ID>/numaflow-python", rev = "<YOUR_BRANCH>"}
+pynumaflow = {git = "https://github.com/numaproj/numaflow-python", rev = "main"}
 
 [tool.poetry.dev-dependencies]
 
