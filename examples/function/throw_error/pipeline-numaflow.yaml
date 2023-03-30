@@ -1,28 +1,24 @@
 apiVersion: numaflow.numaproj.io/v1alpha1
 kind: Pipeline
 metadata:
-  name: local-kafka
+  name: err-test
 spec:
   vertices:
-  - name: input
+  - name: in
     source:
-      generator:
-        rpu: 5
-        duration: 1s
-        keyCount: 5
-        value: 5
+      http: { }
   - name: throw-error
     udf:
       container:
         args:
         - python
         - example.py
-        image: quay.io/keranyang/numaflow-python/throw-error:v1
-  - name: log-output
+        image: quay.io/keranyang/numaflow-python/throw-error:re-raise
+  - name: out
     sink:
       log: {}
   edges:
-  - from: input
+  - from: in
     to: throw-error
   - from: throw-error
-    to: log-output
+    to: out

@@ -1,3 +1,3 @@
 .PHONY: image
 image:
-	docker build -t "quay.io/keranyang/numaflow-python/throw-error:v1" .
+	docker build -t "quay.io/keranyang/numaflow-python/throw-error:re-raise" .
