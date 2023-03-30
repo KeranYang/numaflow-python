@@ -1,0 +1,24 @@
+apiVersion: numaflow.numaproj.io/v1alpha1
+kind: Pipeline
+metadata:
+  name: err-test
+spec:
+  vertices:
+  - name: in
+    source:
+      http: { }
+  - name: throw-error
+    udf:
+      container:
+        args:
+        - python
+        - example.py
+        image: quay.io/keranyang/numaflow-python/throw-error:re-raise
+  - name: out
+    sink:
+      log: {}
+  edges:
+  - from: in
+    to: throw-error
+  - from: throw-error
+    to: out
