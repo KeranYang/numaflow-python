@@ -149,12 +149,7 @@ class TestServer(unittest.TestCase):
         )
 
         response, metadata, code, details = method.termination()
-        self.assertEqual(1, len(response.elements))
-        self.assertEqual(DROP.decode(), response.elements[0].key)
-        self.assertEqual(
-            b"",
-            response.elements[0].value,
-        )
+        self.assertEqual(None, response)
 
     def test_udf_mapt_err(self):
         my_servicer = UserDefinedFunctionServicer(mapt_handler=err_mapt_handler)
@@ -173,26 +168,21 @@ class TestServer(unittest.TestCase):
         )
 
         method = self.test_server.invoke_unary_unary(
-            method_descriptor=(
-                udfunction_pb2.DESCRIPTOR.services_by_name["UserDefinedFunction"].methods_by_name[
-                    "MapTFn"
-                ]
-            ),
-            invocation_metadata={
-                (DATUM_KEY, "test"),
-                ("this_metadata_will_be_skipped", "test_ignore"),
-            },
-            request=request,
-            timeout=1,
-        )
+                method_descriptor=(
+                    udfunction_pb2.DESCRIPTOR.services_by_name["UserDefinedFunction"].methods_by_name[
+                        "MapTFn"
+                    ]
+                ),
+                invocation_metadata={
+                    (DATUM_KEY, "test"),
+                    ("this_metadata_will_be_skipped", "test_ignore"),
+                },
+                request=request,
+                timeout=1,
+            )
 
         response, metadata, code, details = method.termination()
-        self.assertEqual(1, len(response.elements))
-        self.assertEqual(DROP.decode(), response.elements[0].key)
-        self.assertEqual(
-            b"",
-            response.elements[0].value,
-        )
+        self.assertEqual(None, response)
 
     def test_is_ready(self):
         method = self.test_server.invoke_unary_unary(

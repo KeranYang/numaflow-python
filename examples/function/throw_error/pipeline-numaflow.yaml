@@ -1,0 +1,28 @@
+apiVersion: numaflow.numaproj.io/v1alpha1
+kind: Pipeline
+metadata:
+  name: local-kafka
+spec:
+  vertices:
+  - name: input
+    source:
+      generator:
+        rpu: 5
+        duration: 1s
+        keyCount: 5
+        value: 5
+  - name: throw-error
+    udf:
+      container:
+        args:
+        - python
+        - example.py
+        image: quay.io/keranyang/numaflow-python/throw-error:v1
+  - name: log-output
+    sink:
+      log: {}
+  edges:
+  - from: input
+    to: throw-error
+  - from: throw-error
+    to: log-output

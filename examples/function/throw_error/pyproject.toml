@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "map-throw-error"
+version = "0.2.4"
+description = ""
+authors = ["Numaflow developers"]
+
+[tool.poetry.dependencies]
+python = ">=3.8, <3.11"
+aiorun = "^2022.11.1"
+pynumaflow = {git = "https://github.com/numaproj/numaflow-python", rev = "main"}
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
